@@ -17,30 +17,18 @@ const GameScreen = () => {
   const [userGesture, setUserGesture] = useState(null);
   const [computerGesture, setComputerGesture] = useState(null);
   const [result, setResult] = useState(null);
-  const[clicked, setClicked] = useState(false);
-
 
   const playGame = (selectedGesture) => {
+    localRes=0, comp=gestures[Math.floor(Math.random() * gestures.length)];
+   
+    if (selectedGesture == comp) localRes = 0;
+    else if (plays[selectedGesture].includes(comp)) localRes = -1;
+    else localRes = 1;
+
     setUserGesture(selectedGesture);
-    setComputerGesture(gestures[Math.floor(Math.random() * gestures.length)]);
-    
-    // const res = determineResult();
-    // setResult(res);
-
-    if (userGesture == computerGesture) setResult(0);
-    else if (plays[userGesture].includes(computerGesture)) setResult(-1);
-    else setResult(1);
-    
-    console.log(userGesture, computerGesture);
-    
+    setComputerGesture(comp);
+    setResult(localRes);
   };
-
-  // Compare userGesture and computerGesture and set the result.
-  // const determineResult = () => {
-  //   if (userGesture == computerGesture) return 0;
-  //   else if (plays[userGesture].includes(computerGesture)) return -1;
-  //   else return 1;
-  // }
 
   return (
     <View>
@@ -54,7 +42,6 @@ const GameScreen = () => {
             />
           ))}
         </View>
-        {userGesture && computerGesture && result!=null && (
           <View>
             <Text>
               You picked {userGesture}
@@ -66,7 +53,6 @@ const GameScreen = () => {
               Result: {result}
             </Text>
           </View>
-        )}
     </View>
   );
 };
