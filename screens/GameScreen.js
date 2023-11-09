@@ -34,29 +34,27 @@ const GameScreen = () => {
   return (
     <View>
       <ImageBackground source={require("../back.jpg")} style={styles.image}>
-        <Text style={styles.title}>Choose your strategy</Text>
-        <Card containerStyle={styles.card}>
-          <View style={styles.buttons}>
-            {gestures.map((gesture) => (
-              <GestureButton
-                key={gesture}
-                gesture={gesture}
-                onPress={() => playGame(gesture)}
-                imageUrl={plays[gesture][1]}
-              />
-            ))}
-          </View>
+      <Text style={styles.title}>Choose your strategy</Text>
+      <Card containerStyle={styles.card}>
+        <View style={styles.buttons}>
+          {gestures.map((gesture) => (
+            <GestureButton
+              key={gesture}
+              gesture={gesture}
+              onPress={() => playGame(gesture)}
+              imageUrl={plays[gesture][1]}
+            />
+          ))}
+        </View>
+      </Card>
+        { userGesture && computerGesture && (
+        <Card containerStyle={styles.resultCard}>
+          <Text style={styles.resultText}>You picked {userGesture}</Text>
+          <Text style={styles.resultText}>Computer picked {computerGesture}</Text>
+          <Text style={styles.resultText}>Result: {result}</Text>
         </Card>
-        {userGesture && computerGesture && (
-          <View style={styles.result}>
-            <Text style={styles.resultText}>You picked {userGesture}</Text>
-            <Text style={styles.resultText}>
-              Computer picked {computerGesture}
-            </Text>
-            <Text style={styles.resultText}>Result: {result}</Text>
-          </View>
         )}
-      </ImageBackground>
+        </ImageBackground>
     </View>
   );
 };
@@ -76,6 +74,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     display: "flex",
     flexDirection: "row",
+  },
+  resultCard: {
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    padding: 10,
+    margin: 10,
+    marginTop: "10%",
+    borderRadius: 10,
+    display: "flex",
   },
   result: {
     margin: '7%',
