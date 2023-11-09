@@ -47,11 +47,13 @@ const GameScreen = () => {
           ))}
         </View>
       </Card>
-        <View style={styles.result}>
+        { userGesture && computerGesture && (
+        <Card containerStyle={styles.resultCard}>
           <Text style={styles.resultText}>You picked {userGesture}</Text>
           <Text style={styles.resultText}>Computer picked {computerGesture}</Text>
           <Text style={styles.resultText}>Result: {result}</Text>
-        </View>
+        </Card>
+        )}
         </ImageBackground>
     </View>
   );
@@ -72,6 +74,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     display: "flex",
     flexDirection: "row",
+  },
+  resultCard: {
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    padding: 10,
+    margin: 10,
+    marginTop: "10%",
+    borderRadius: 10,
+    display: "flex",
   },
   result: {
     margin: '7%',
