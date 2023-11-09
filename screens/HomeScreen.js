@@ -34,7 +34,7 @@ const HomeScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   principal:{
-    backgroundColor: 'black',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
     color:'white',
     fontSize: 48,
     fontWeight: 'bold',
