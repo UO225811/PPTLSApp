@@ -30,48 +30,59 @@ const CreditCalculatorScreen = () => {
 
   return (
     <ImageBackground source={require("../stonks.jpg")} style={styles.image}>
-    <View style={styles.main}>
-    <Card containerStyle={styles.card}>
-      <Text style={styles.container}>
-        Simulador de Crédito
-      </Text>
-      <View style={{ marginVertical: 20 }}>
-        <Text style={styles.centered}>
-          Cantidad del Crédito: ${creditAmount}
-        </Text>
-        <Slider style={styles.sliders}
-          minimumValue={1000}
-          maximumValue={30000}
-          step={500}
-          value={creditAmount}
-          onValueChange={(value) => setCreditAmount(value)}
-          minimumTrackTintColor= 'orange'
-          thumbTintColor= 'steelblue'
-          maximumTrackTintColor= 'steelblue'
-        />
+      <View style={styles.main}>
+        <Card containerStyle={styles.card}>
+          <Text style={styles.container}>Simulador de Crédito</Text>
+          <View style={{ marginVertical: 20 }}>
+            <Text style={styles.centered}>
+              Cantidad del Crédito: ${creditAmount}
+            </Text>
+            <Slider
+              style={styles.sliders}
+              minimumValue={1000}
+              maximumValue={30000}
+              step={500}
+              value={creditAmount}
+              onValueChange={(value) => setCreditAmount(value)}
+              minimumTrackTintColor="orange"
+              thumbTintColor="steelblue"
+              maximumTrackTintColor="steelblue"
+            />
+          </View>
+          <View>
+            <Text style={styles.centered}>
+              Número de Plazos: {numberOfInstallments}
+            </Text>
+            <Slider
+              style={styles.sliders}
+              minimumValue={3}
+              maximumValue={36}
+              step={3}
+              value={numberOfInstallments}
+              onValueChange={(value) => setNumberOfInstallments(value)}
+              minimumTrackTintColor="orange"
+              thumbTintColor="steelblue"
+              maximumTrackTintColor="steelblue"
+            />
+          </View>
+          <Text style={styles.centered}>
+            Cuota Mensual: ${calculateMonthlyPayment()}
+          </Text>
+          <View style={styles.margins}>
+            <Button
+              style={styles.buttonStyles}
+              title="Obtener Crédito"
+              onPress={handleGrantCredit}
+            />
+          </View>
+          <View style={styles.margins}>
+            <Button
+              title="Detalles del Crédito"
+              onPress={handleCreditDetails}
+            />
+          </View>
+        </Card>
       </View>
-      <View>
-        <Text style={styles.centered}>
-          Número de Plazos: {numberOfInstallments}
-        </Text>
-        <Slider style={styles.sliders}
-          minimumValue={3}
-          maximumValue={36}
-          step={3}
-          value={numberOfInstallments}
-          onValueChange={(value) => setNumberOfInstallments(value)}
-          minimumTrackTintColor= 'orange'
-          thumbTintColor= 'steelblue'
-          maximumTrackTintColor= 'steelblue'
-        />
-      </View>
-      <Text style={styles.centered}>
-        Cuota Mensual: ${calculateMonthlyPayment()}
-      </Text>
-      <Button style={styles.buttonStyles} title="Obtener Crédito" onPress={handleGrantCredit} />
-      <Button title="Detalles del Crédito" onPress={handleCreditDetails} />
-      </Card>
-    </View>
     </ImageBackground>
   );
 };
@@ -101,7 +112,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
         padding: 10,
         margin: 10,
-        marginTop: '30%',
+        marginTop: '25%',
         borderRadius: 10,
         alignContent: 'center',
     },
@@ -111,6 +122,10 @@ const styles = StyleSheet.create({
     },
     buttonStyles: {
         marginTop: 5
+    },
+    margins:{
+      marginTop: 20,
+      marginBottom: 5
     }
 });
 
