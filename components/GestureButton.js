@@ -1,10 +1,20 @@
 import React from 'react';
-import { Button } from 'react-native';
+import {TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-const GestureButton = ({ gesture, onPress }) => {
+const GestureButton = ({ gesture, onPress, imageUrl }) => {
   return (
-    <Button title={gesture} onPress={onPress} />
+    <TouchableOpacity onPress={onPress} gesture={gesture}>
+      <Image style={styles.image} source={imageUrl} />
+    </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  image: {
+    width: 68,
+    height: 68,
+    margin: "1%"
+  }
+});
 
 export default GestureButton;
